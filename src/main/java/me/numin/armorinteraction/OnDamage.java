@@ -1,6 +1,5 @@
 package me.numin.armorinteraction;
 
-import com.projectkorra.projectkorra.ability.CoreAbility;
 import com.projectkorra.projectkorra.event.AbilityDamageEntityEvent;
 import me.numin.armorinteraction.configuration.Configuration;
 import org.bukkit.Material;
@@ -22,9 +21,8 @@ public class OnDamage implements Listener {
     public void onDamage(AbilityDamageEntityEvent event) {
         double totalPower = 0;
         Entity target = event.getEntity();
-        CoreAbility ability = CoreAbility.getAbility(event.getAbility().getName());
 
-        if (!(target instanceof LivingEntity) || ability == null)
+        if (!(target instanceof LivingEntity) || event.getAbility() == null)
             return;
 
         LivingEntity livingTarget = (LivingEntity)target;

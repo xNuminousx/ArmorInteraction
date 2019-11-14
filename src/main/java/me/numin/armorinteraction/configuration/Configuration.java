@@ -23,8 +23,9 @@ public class Configuration {
 
         config.addDefault("Note", "Diamond armor is used as a base for this algorithm. " +
                 "It adds up the total of diamond armor power and uses that as the max potential power. " +
-                "By default, the max potential power of someone's armor is 16 (with full diamond armor). " +
-                "Be sure when you add up the totals of all your armor, diamond has the most.");
+                "Be sure when you add up the totals of all your armor, diamond has the most. " +
+                "To check: Helmet + Chestplate + Leggings + Boots = Total Armor Power. " +
+                "Example (Diamond armor): Helmet + Chestplate + Leggings + Boots = 16");
 
         config.addDefault("Note 2", "The GlobalStrength variable is a means of having control over the armors" +
                 " strength all at once. For example, by setting the GlobalStrength to 1 someone with full diamond armor will" +

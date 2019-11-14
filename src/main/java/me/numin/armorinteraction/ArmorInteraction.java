@@ -19,7 +19,7 @@ public final class ArmorInteraction extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        plugin.getLogger().info("Successfully enabled " + plugin.getDescription().getName());
+        plugin.getLogger().info("Successfully disabled " + plugin.getDescription().getName());
     }
 
     public static ArmorInteraction getInstance() {
