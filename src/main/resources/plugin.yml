@@ -1,0 +1,7 @@
+name: ArmorInteraction
+version: ${project.version}
+main: me.numin.armorinteraction.ArmorInteraction
+api-version: 1.13
+softdepend: [ProjectKorra]
+authors: [Numin]
+description: Have bending interact with armor.
