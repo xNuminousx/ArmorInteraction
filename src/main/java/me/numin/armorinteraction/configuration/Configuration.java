@@ -1,83 +1,64 @@
 package me.numin.armorinteraction.configuration;
 
 import me.numin.armorinteraction.ArmorInteraction;
+import ru.ckateptb.armorinteraction.Configurable;
 
-import org.bukkit.configuration.file.FileConfiguration;
+@Configurable.ConfigFile(header = "Diamond armor is used as a base for this algorithm." +
+        "\n# It adds up the total of diamond armor power and uses that as the max potential power." +
+        "\n# Be sure when you add up the totals of all your armor, diamond has the most." +
+        "\n# To check: helmet + chestplate + leggings + boots = Total Armor Power." +
+        "\n# Example (Diamond armor): helmet + chestplate + leggings + boots = 16\n# " +
+        "\n# The GlobalStrength variable is a means of having control over the armors strength all at once." +
+        "\n# For example, by setting the GlobalStrength to 1 someone with full diamond armor will not take any damage from a bending ability." +
+        "\n# It's set to 0.6 by default so only 60 percent of the damage reduction actually takes place." +
+        "\n# This value should not be more than 1 or less than 0 since it's on a percentage calculation where 1 = 100%, 0.5 = 50%, and 0 = 0%.\n")
+public class Configuration extends Configurable {
 
-public class Configuration {
-
-    private ConfigFile configFile;
-    private static ArmorInteraction plugin = ArmorInteraction.getInstance();
+    @ConfigField(name = "strength.multiplier")
+    public static double GLOBAL_STRENGTH = 0.6;
+    @ConfigField(name = "leather.helmet")
+    public static double LEATHER_HELMET = 1;
+    @ConfigField(name = "leather.chestplate")
+    public static double LEATHER_CHESTPLATE = 1;
+    @ConfigField(name = "leather.leggings")
+    public static double LEATHER_LEGGINGS = 1;
+    @ConfigField(name = "leather.boots")
+    public static double LEATHER_BOOTS = 1;
+    @ConfigField(name = "chainmail.helmet")
+    public static double CHAINMAIL_HELMET = 2;
+    @ConfigField(name = "chainmail.chestplate")
+    public static double CHAINMAIL_CHESTPLATE = 2;
+    @ConfigField(name = "chainmail.leggings")
+    public static double CHAINMAIL_LEGGINGS = 2;
+    @ConfigField(name = "chainmail.boots")
+    public static double CHAINMAIL_BOOTS = 2;
+    @ConfigField(name = "golden.helmet")
+    public static double GOLDEN_HELMET = 2;
+    @ConfigField(name = "golden.chestplate")
+    public static double GOLDEN_CHESTPLATE = 2;
+    @ConfigField(name = "golden.leggings")
+    public static double GOLDEN_LEGGINGS = 2;
+    @ConfigField(name = "golden.boots")
+    public static double GOLDEN_BOOTS = 2;
+    @ConfigField(name = "iron.helmet")
+    public static double IRON_HELMET = 3;
+    @ConfigField(name = "iron.chestplate")
+    public static double IRON_CHESTPLATE = 3;
+    @ConfigField(name = "iron.leggings")
+    public static double IRON_LEGGINGS = 3;
+    @ConfigField(name = "iron.boots")
+    public static double IRON_BOOTS = 3;
+    @ConfigField(name = "diamond.helmet")
+    public static double DIAMOND_HELMET = 4;
+    @ConfigField(name = "diamond.chestplate")
+    public static double DIAMOND_CHESTPLATE = 4;
+    @ConfigField(name = "diamond.leggings")
+    public static double DIAMOND_LEGGINGS = 4;
+    @ConfigField(name = "diamond.boots")
+    public static double DIAMOND_BOOTS = 4;
+    public static double MAX_POTENTIAL;
 
     public Configuration() {
-        this.configFile = new ConfigFile("config");
-        loadConfig();
+        super(ArmorInteraction.getInstance().getDataFolder() + "/config.yml");
     }
-
-    private FileConfiguration getConfig() {
-        return configFile.getConfig();
-    }
-
-    public void loadConfig() {
-        FileConfiguration config = plugin.getConfig();
-
-        config.addDefault("Note", "Diamond armor is used as a base for this algorithm. " +
-                "It adds up the total of diamond armor power and uses that as the max potential power. " +
-                "Be sure when you add up the totals of all your armor, diamond has the most. " +
-                "To check: Helmet + Chestplate + Leggings + Boots = Total Armor Power. " +
-                "Example (Diamond armor): Helmet + Chestplate + Leggings + Boots = 16");
-
-        config.addDefault("Note 2", "The GlobalStrength variable is a means of having control over the armors" +
-                " strength all at once. For example, by setting the GlobalStrength to 1 someone with full diamond armor will" +
-                " not take any damage from a bending ability. It's set to 0.6 by default so only 60 percent of the damage" +
-                " reduction actually takes place. This value should not be more than 1 or less than 0 since it's on a percentage" +
-                " calculation where 1 = 100%, 0.5 = 50%, and 0 = 0%.");
-
-        config.addDefault("ArmorPower.GlobalStrength", 0.6);
-
-        config.addDefault("ArmorPower.Leather.Helmet", 1);
-        config.addDefault("ArmorPower.Leather.Chestplate", 1);
-        config.addDefault("ArmorPower.Leather.Leggings", 1);
-        config.addDefault("ArmorPower.Leather.Boots", 1);
-
-        config.addDefault("ArmorPower.Chainmail.Helmet", 2);
-        config.addDefault("ArmorPower.Chainmail.Chestplate", 2);
-        config.addDefault("ArmorPower.Chainmail.Leggings", 2);
-        config.addDefault("ArmorPower.Chainmail.Boots", 2);
-
-        config.addDefault("ArmorPower.Iron.Helmet", 3);
-        config.addDefault("ArmorPower.Iron.Chestplate", 3);
-        config.addDefault("ArmorPower.Iron.Leggings", 3);
-        config.addDefault("ArmorPower.Iron.Boots", 3);
-
-        config.addDefault("ArmorPower.Diamond.Helmet", 4);
-        config.addDefault("ArmorPower.Diamond.Chestplate", 4);
-        config.addDefault("ArmorPower.Diamond.Leggings", 4);
-        config.addDefault("ArmorPower.Diamond.Boots", 4);
-
-        config.options().copyDefaults(true);
-        plugin.saveConfig();
-    }
-
-    public static double getGlobalStrength() {return plugin.getConfig().getDouble("ArmorPower.GlobalStrength");}
-
-    public static double getLeatherHelmetPower() {return plugin.getConfig().getDouble("ArmorPower.Leather.Helmet");}
-    public static double getLeatherChestplatePower() {return plugin.getConfig().getDouble("ArmorPower.Leather.Chestplate");}
-    public static double getLeatherLeggingsPower() {return plugin.getConfig().getDouble("ArmorPower.Leather.Leggings");}
-    public static double getLeatherBootsPower() {return plugin.getConfig().getDouble("ArmorPower.Leather.Boots");}
-
-    public static double getChainmailHelmetPower() {return plugin.getConfig().getDouble("ArmorPower.Chainmail.Helmet");}
-    public static double getChainmailChestplatePower() {return plugin.getConfig().getDouble("ArmorPower.Chainmail.Chestplate");}
-    public static double getChainmailLeggingsPower() {return plugin.getConfig().getDouble("ArmorPower.Chainmail.Leggings");}
-    public static double getChainmailBootsPower() {return plugin.getConfig().getDouble("ArmorPower.Chainmail.Boots");}
-
-    public static double getIronHelmetPower() {return plugin.getConfig().getDouble("ArmorPower.Iron.Helmet");}
-    public static double getIronChestplatePower() {return plugin.getConfig().getDouble("ArmorPower.Iron.Chestplate");}
-    public static double getIronLeggingsPower() {return plugin.getConfig().getDouble("ArmorPower.Iron.Leggings");}
-    public static double getIronBootsPower() {return plugin.getConfig().getDouble("ArmorPower.Iron.Boots");}
-
-    public static double getDiamondHelmetPower() {return plugin.getConfig().getDouble("ArmorPower.Diamond.Helmet");}
-    public static double getDiamondChestplatePower() {return plugin.getConfig().getDouble("ArmorPower.Diamond.Chestplate");}
-    public static double getDiamondLeggingsPower() {return plugin.getConfig().getDouble("ArmorPower.Diamond.Leggings");}
-    public static double getDiamondBootsPower() {return plugin.getConfig().getDouble("ArmorPower.Diamond.Boots");}
 }
