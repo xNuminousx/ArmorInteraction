@@ -1,6 +1,26 @@
+/*
+ *   Copyright 2019 Numin <https://github.com/xNuminousx>
+ *   Copyright 2020 Moros <https://github.com/PrimordialMoros>
+ *
+ * 	  This file is part of ArmorInteraction.
+ *
+ *    ArmorInteraction is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    ArmorInteraction is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with ArmorInteraction.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 package me.numin.armorinteraction;
 
-import me.numin.armorinteraction.configuration.Configuration;
+import me.numin.armorinteraction.configuration.ConfigManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ArmorInteraction extends JavaPlugin {
@@ -11,18 +31,16 @@ public final class ArmorInteraction extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
-        new Configuration();
-        this.getServer().getPluginManager().registerEvents(new OnDamage(), plugin);
+        new ConfigManager();
+        getServer().getPluginManager().registerEvents(new CoreListener(), plugin);
 
-        plugin.getLogger().info("Successfully enabled " + plugin.getDescription().getName());
     }
 
     @Override
     public void onDisable() {
-        plugin.getLogger().info("Successfully disabled " + plugin.getDescription().getName());
     }
 
-    public static ArmorInteraction getInstance() {
+    public static ArmorInteraction getPlugin() {
         return plugin;
     }
 }
