@@ -18,7 +18,7 @@
  *    along with ArmorInteraction.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.numin.armorinteraction;
+package main.java.me.numin.armorinteraction;
 
 import com.projectkorra.projectkorra.event.AbilityDamageEntityEvent;
 import com.projectkorra.projectkorra.event.BendingReloadEvent;

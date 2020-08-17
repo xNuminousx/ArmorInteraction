@@ -18,9 +18,9 @@
  *    along with ArmorInteraction.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.numin.armorinteraction;
+package main.java.me.numin.armorinteraction;
 
-import me.numin.armorinteraction.configuration.ConfigManager;
+import main.java.me.numin.armorinteraction.configuration.ConfigManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ArmorInteraction extends JavaPlugin {
@@ -33,11 +33,12 @@ public final class ArmorInteraction extends JavaPlugin {
 
         new ConfigManager();
         getServer().getPluginManager().registerEvents(new CoreListener(), plugin);
-
+        getLogger().info("Successfully enabled " + getName());
     }
 
     @Override
     public void onDisable() {
+        getLogger().info("Successfully disabled " + getName());
     }
 
     public static ArmorInteraction getPlugin() {

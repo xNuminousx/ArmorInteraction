@@ -18,9 +18,9 @@
  *    along with ArmorInteraction.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package me.numin.armorinteraction.configuration;
+package main.java.me.numin.armorinteraction.configuration;
 
-import me.numin.armorinteraction.ArmorInteraction;
+import main.java.me.numin.armorinteraction.ArmorInteraction;
 import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigManager {
